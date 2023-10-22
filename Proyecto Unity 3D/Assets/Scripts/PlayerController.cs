@@ -52,10 +52,21 @@ public class PlayerController : MonoBehaviour
             other.gameObject.SetActive(false);
             count = count + 1;
             SetCountText();
-            if (count >= 12)
+            if (count >= 1)
             {
                 winTextObject.SetActive(true);
+                Destroy(GameObject.FindGameObjectWithTag("Enemigos"));
             }
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemigos"))
+        {
+            Destroy(gameObject);
+            winTextObject.gameObject.SetActive(true);
+            winTextObject.GetComponent<TextMeshProUGUI>().text = "Game Over";
         }
     }
 
