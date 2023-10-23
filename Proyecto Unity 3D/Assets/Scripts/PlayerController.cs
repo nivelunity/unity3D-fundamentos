@@ -16,6 +16,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private GameObject winTextObject;
 
+    [SerializeField]
+    [Range(2, 40)]
+    private int objetivosGemas;
+
+
     private Rigidbody rb;
 
     private float movementX;
@@ -52,7 +57,7 @@ public class PlayerController : MonoBehaviour
             other.gameObject.SetActive(false);
             count = count + 1;
             SetCountText();
-            if (count >= 1)
+            if (count >= objetivosGemas)
             {
                 winTextObject.SetActive(true);
                 Destroy(GameObject.FindGameObjectWithTag("Enemigos"));
@@ -66,7 +71,7 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(gameObject);
             winTextObject.gameObject.SetActive(true);
-            winTextObject.GetComponent<TextMeshProUGUI>().text = "Game Over";
+            winTextObject.GetComponent<TextMeshProUGUI>().text = "GAME OVER";
         }
     }
 
