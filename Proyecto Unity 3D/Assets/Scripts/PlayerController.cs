@@ -47,14 +47,24 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
+
+        if (movement.magnitude == 0) return;
+
         Quaternion rotation = Quaternion.LookRotation(movement);
         rb.MoveRotation(rotation);
         rb.AddForce(movement * speed);
-   
+
     }
 
     void OnTriggerEnter(Collider other)
     {
+        Debug.Log(gameObject.name + " OnTriggerEnter con " + other.gameObject.name);
+
+        if (other.gameObject.CompareTag("Combates"))
+        {
+            Debug.Log("¡ES HORA DEL DUELO!");
+        }
+
         if (other.gameObject.CompareTag("Coleccionable"))
         {
             other.gameObject.SetActive(false);
@@ -70,6 +80,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log(gameObject.name + " OnCollisionEnter con " + collision.gameObject.name);
+
         if (collision.gameObject.CompareTag("Enemigos"))
         {
             Destroy(gameObject);
