@@ -47,7 +47,10 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
+        Quaternion rotation = Quaternion.LookRotation(movement);
+        rb.MoveRotation(rotation);
         rb.AddForce(movement * speed);
+   
     }
 
     void OnTriggerEnter(Collider other)
