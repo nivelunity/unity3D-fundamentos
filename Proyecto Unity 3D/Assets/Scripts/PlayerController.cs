@@ -28,6 +28,10 @@ public class PlayerController : MonoBehaviour
 
     private int count;
 
+
+    private Vector3 targetPos;
+    [SerializeField] private bool isMoving = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +50,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        /*
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
 
         if (movement.magnitude == 0) return;
@@ -53,9 +58,23 @@ public class PlayerController : MonoBehaviour
         Quaternion rotation = Quaternion.LookRotation(movement);
         rb.MoveRotation(rotation);
         rb.AddForce(movement * speed);
+        */
 
+        if (isMoving)
+        {
+            Vector3 direction = targetPos - rb.position;
+
+            direction.Normalize();
+            Quaternion rotation = Quaternion.LookRotation(direction);
+            rb.MoveRotation(rotation);
+            rb.AddForce(direction * speed);
+        }
+
+        if (Vector3.Distance(rb.position, targetPos) < 0.5f)
+        {
+            isMoving = false;
+        }
     }
-
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Combates"))
@@ -70,6 +89,31 @@ public class PlayerController : MonoBehaviour
             Debug.Log("¡FIN DEL LA CENA!");
             winTextObject.GetComponent<TextMeshProUGUI>().text = "NO MAS MANZANAS";
             Invoke("DesactivarConDelay", 1f);
+        }
+    }
+
+    private void Update()
+    {
+        
+        if (Input.GetMouseButton(0)) 
+        {
+            Debug.Log("Mouse Clicked");
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Debug.DrawRay(ray.origin, ray.direction * 50, Color.yellow);
+
+            RaycastHit hit; // Define variable to hold raycast hit information
+
+            // Check if raycast hits an object
+            if (Physics.Raycast(ray, out hit))
+            {
+                targetPos = hit.point; // Set target position
+                isMoving = true; // Start player movement
+            }
+            else
+            {
+                isMoving = false;
+            }
+
         }
     }
 
