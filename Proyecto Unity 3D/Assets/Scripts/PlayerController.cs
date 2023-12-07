@@ -47,31 +47,55 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
+
+        if (movement.magnitude == 0) return;
+
+        Quaternion rotation = Quaternion.LookRotation(movement);
+        rb.MoveRotation(rotation);
         rb.AddForce(movement * speed);
+
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Combates"))
+        {
+            Debug.Log("¡FIN DEL DUELO!");
+            winTextObject.GetComponent<TextMeshProUGUI>().text = "FIN DE DUELO";
+            Invoke("DesactivarConDelay", 1f);
+        }
+
+        if (other.gameObject.CompareTag("Coleccionable"))
+        {
+            Debug.Log("¡FIN DEL LA CENA!");
+            winTextObject.GetComponent<TextMeshProUGUI>().text = "NO MAS MANZANAS";
+            Invoke("DesactivarConDelay", 1f);
+        }
+    }
+
+    void DesactivarConDelay()
+    {
+        winTextObject.gameObject.SetActive(false);
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Coleccionable"))
+        if (other.gameObject.CompareTag("Combates"))
         {
-            other.gameObject.SetActive(false);
-            count = count + 1;
-            SetCountText();
-            if (count >= objetivosGemas)
-            {
-                winTextObject.SetActive(true);
-                Destroy(GameObject.FindGameObjectWithTag("Enemigos"));
-            }
+            Debug.Log("¡ES HORA DEL DUELO!");
+            winTextObject.gameObject.SetActive(true);
+            winTextObject.GetComponent<TextMeshProUGUI>().text = "EL DUELO";
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerStay(Collider other)
     {
-        if (collision.gameObject.CompareTag("Enemigos"))
+        Debug.Log("EN TRIGGER");
+        if(Input.GetKeyDown(KeyCode.E))
         {
-            Destroy(gameObject);
+            Debug.Log("¡COMIENDO MANZANA !");
             winTextObject.gameObject.SetActive(true);
-            winTextObject.GetComponent<TextMeshProUGUI>().text = "GAME OVER";
+            winTextObject.GetComponent<TextMeshProUGUI>().text = "COMIENDO";
         }
     }
 
