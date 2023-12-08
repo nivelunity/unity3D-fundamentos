@@ -11,6 +11,10 @@ public class PlayerController : MonoBehaviour
     private float speed = 10f;
 
     [SerializeField]
+    LayerMask IgnoreMe;
+
+
+    [SerializeField]
     private TextMeshProUGUI countText;
 
     [SerializeField]
@@ -107,8 +111,9 @@ public class PlayerController : MonoBehaviour
             RaycastHit hit; // Define variable to hold raycast hit information
 
             // Check if raycast hits an object
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit,1000f, ~IgnoreMe))
             {
+                Debug.Log(hit.collider.gameObject.name);
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
                 {
                     targetPos = hit.point; // Set target position

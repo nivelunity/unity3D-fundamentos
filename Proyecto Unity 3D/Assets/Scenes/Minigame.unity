@@ -250,6 +250,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Granja
       objectReference: {fileID: 0}
+    - target: {fileID: 865314133625224243, guid: 4ec29be834e1d8f45bb3fb518b76a4ba,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1242499962521830700, guid: 4ec29be834e1d8f45bb3fb518b76a4ba,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -258,12 +263,12 @@ PrefabInstance:
     - target: {fileID: 1242499962521830700, guid: 4ec29be834e1d8f45bb3fb518b76a4ba,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.0194325
+      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: 1242499962521830700, guid: 4ec29be834e1d8f45bb3fb518b76a4ba,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.3679419
+      value: -6.81
       objectReference: {fileID: 0}
     - target: {fileID: 1242499962521830700, guid: 4ec29be834e1d8f45bb3fb518b76a4ba,
         type: 3}
@@ -3488,10 +3493,20 @@ PrefabInstance:
       propertyPath: winTextObject
       value: 
       objectReference: {fileID: 921286649}
+    - target: {fileID: 3885427013056187837, guid: 3e02dcf9206835b4cbd8870fda942768,
+        type: 3}
+      propertyPath: IgnoreMe.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 7178260659969819358, guid: 3e02dcf9206835b4cbd8870fda942768,
         type: 3}
       propertyPath: m_Name
       value: Jugador
+      objectReference: {fileID: 0}
+    - target: {fileID: 7178260659969819358, guid: 3e02dcf9206835b4cbd8870fda942768,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7477632054698778664, guid: 3e02dcf9206835b4cbd8870fda942768,
         type: 3}
