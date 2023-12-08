@@ -59,6 +59,12 @@ public class PlayerController : MonoBehaviour
         rb.MoveRotation(rotation);
         rb.AddForce(movement * speed);
         */
+  
+        if (Vector3.Distance(rb.position, targetPos) < 0.1f)
+        {
+            isMoving = false;
+            rb.velocity = Vector3.zero;
+        }
 
         if (isMoving)
         {
@@ -70,10 +76,7 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(direction * speed);
         }
 
-        if (Vector3.Distance(rb.position, targetPos) < 0.5f)
-        {
-            isMoving = false;
-        }
+
     }
     private void OnTriggerExit(Collider other)
     {
@@ -106,8 +109,11 @@ public class PlayerController : MonoBehaviour
             // Check if raycast hits an object
             if (Physics.Raycast(ray, out hit))
             {
-                targetPos = hit.point; // Set target position
-                isMoving = true; // Start player movement
+                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
+                {
+                    targetPos = hit.point; // Set target position
+                    isMoving = true; // Start player movement
+                }
             }
             else
             {

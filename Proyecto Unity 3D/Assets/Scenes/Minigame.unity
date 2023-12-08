@@ -1165,7 +1165,7 @@ GameObject:
   - component: {fileID: 919275387}
   - component: {fileID: 919275386}
   - component: {fileID: 919275390}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mapa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2450,6 +2450,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7274006608661370056, guid: 9746979f59e694feab90f89d54d783b0,
         type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274006608661370056, guid: 9746979f59e694feab90f89d54d783b0,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -3487,6 +3492,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jugador
+      objectReference: {fileID: 0}
+    - target: {fileID: 7477632054698778664, guid: 3e02dcf9206835b4cbd8870fda942768,
+        type: 3}
+      propertyPath: m_Drag
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7477632054698778664, guid: 3e02dcf9206835b4cbd8870fda942768,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 7477632054698778664, guid: 3e02dcf9206835b4cbd8870fda942768,
         type: 3}
