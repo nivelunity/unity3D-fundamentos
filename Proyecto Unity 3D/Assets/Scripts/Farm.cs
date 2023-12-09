@@ -7,6 +7,9 @@ public class Farm : MonoBehaviour
     [Range(10, 200)]
     int foodPoints = 100;
 
+    [SerializeField]
+    ParticleSystem lootSFX;
+
     private bool isLooting = false;
 
     private void OnTriggerEnter(Collider other)
@@ -14,6 +17,7 @@ public class Farm : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             isLooting = true;
+            lootSFX.Play();
             StartCoroutine(LootingCorrutine());
         }
     }
@@ -23,6 +27,7 @@ public class Farm : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             isLooting = false;
+            lootSFX.Stop();
             StartCoroutine(LootingCorrutine());
         }
     }

@@ -9,3 +9,4 @@ External Assets
 - [Low Poly Farm Pack Lite](https://assetstore.unity.com/packages/3d/environments/industrial/low-poly-farm-pack-lite-188100)
 - [Toony Tiny People Demo](https://assetstore.unity.com/packages/3d/characters/toony-tiny-people-demo-113188)
 - [Low Poly Cartoon Pack Free](https://assetstore.unity.com/packages/3d/environments/landscapes/low-poly-cartoon-mini-pack-free-227405)
+- [Simple FX - Cartoon Particles](https://assetstore.unity.com/packages/vfx/particles/simple-fx-cartoon-particles-67834)
