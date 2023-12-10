@@ -18,7 +18,7 @@ public class Farm : MonoBehaviour
     int foodPoints = 9;
 
     [SerializeField]
-    [Range(9, 18)]
+    [Range(9, 27)]
     int lootTolalTime = 10;
 
     private bool isLooting = false;
