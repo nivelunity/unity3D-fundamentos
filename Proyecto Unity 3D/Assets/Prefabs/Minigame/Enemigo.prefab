@@ -70,7 +70,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jugador: {fileID: 0}
-  radioDeteccion: 10
+  radioDeteccion: 6
   fieldOfView: 90
   myAnimator: {fileID: 516234365181105464}
 --- !u!1 &7625587403249001355

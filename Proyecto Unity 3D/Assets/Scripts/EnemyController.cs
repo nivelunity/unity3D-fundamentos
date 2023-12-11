@@ -21,8 +21,11 @@ public class EnemyController : MonoBehaviour
 
     private NavMeshAgent navMeshAgent;
     
-    // Start is called before the first frame update
     private float detectionRadiusSquared;
+
+    private bool isCombat = false;
+    public bool IsCombat { get => isCombat; set => isCombat = value; }
+
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -32,6 +35,9 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (isCombat) return;
+
         if (jugador == null) return;
 
         Vector3 toPlayer = jugador.position - transform.position;
