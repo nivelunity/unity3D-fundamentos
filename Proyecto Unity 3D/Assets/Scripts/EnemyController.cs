@@ -16,11 +16,17 @@ public class EnemyController : MonoBehaviour
     [Range(45f, 180f)]
     private float fieldOfView = 90f;
 
+    [SerializeField]
+    private Animator myAnimator;
+
     private NavMeshAgent navMeshAgent;
+    
     // Start is called before the first frame update
+    private float detectionRadiusSquared;
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        detectionRadiusSquared = radioDeteccion * radioDeteccion;
     }
 
     // Update is called once per frame
@@ -28,16 +34,18 @@ public class EnemyController : MonoBehaviour
     {
         if (jugador == null) return;
 
-        float distance = Vector3.Distance(transform.position, jugador.position);
+        Vector3 toPlayer = jugador.position - transform.position;
+        float squareDistanceToJugador = toPlayer.sqrMagnitude;
 
-
-        Vector3 toPlayer = (jugador.position - transform.position).normalized;
-        float angleToPlayer = Vector3.Angle(transform.forward, toPlayer);
-
-        if (distance <= radioDeteccion && (angleToPlayer <= fieldOfView * 0.5f))
+        if (squareDistanceToJugador > detectionRadiusSquared) return;
+        
+        float dotProduct = Vector3.Dot(transform.forward, toPlayer.normalized);
+        if (dotProduct >= Mathf.Cos(fieldOfView * .5f *Mathf.Deg2Rad))
         {
             navMeshAgent.SetDestination(jugador.position);
         }
+
+        myAnimator.SetBool("isRunning", (navMeshAgent.velocity.magnitude > 0));
     }
 
     void OnDrawGizmosSelected()
