@@ -49,9 +49,12 @@ public class EnemyController : MonoBehaviour
         if (dotProduct >= Mathf.Cos(fieldOfView * .5f *Mathf.Deg2Rad))
         {
             navMeshAgent.SetDestination(jugador.position);
+            myAnimator.SetBool("isRunning", true);
         }
-
-        myAnimator.SetBool("isRunning", (navMeshAgent.velocity.magnitude > 0));
+        else
+        {
+            myAnimator.SetBool("isRunning", false);
+        }
     }
 
     public void StartCombat()
@@ -63,6 +66,7 @@ public class EnemyController : MonoBehaviour
     public void EndCombat()
     {
         isCombat = false;
+        Debug.Log("EL ENEMIGO SALIO DEL COMBATE");
         myAnimator.SetTrigger("EndCombat");
     }
 

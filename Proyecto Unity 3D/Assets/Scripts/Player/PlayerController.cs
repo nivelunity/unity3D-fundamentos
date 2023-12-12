@@ -20,8 +20,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private Vector3 targetPos;
     private bool isMoving = false;
+    private bool isCombat = false;
 
-   
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (isCombat) return;
 
         if (Input.GetMouseButton(0))
         {
@@ -57,6 +58,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isCombat) return;
+
         Vector3 directionToMove = targetPos - rb.position;
         float distanceToMoveSquared = directionToMove.sqrMagnitude;
 
@@ -78,5 +81,18 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(directionToMove * speed);
         }
+    }
+
+    public void StartCombat()
+    {
+        isCombat = true;
+        myAnimator.SetTrigger("StartCombat");
+        rb.Sleep();
+    }
+
+    public void EndCombat()
+    {
+        isCombat = false;
+        myAnimator.SetTrigger("EndCombat");
     }
 }
