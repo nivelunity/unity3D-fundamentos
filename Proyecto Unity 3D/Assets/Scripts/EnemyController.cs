@@ -54,6 +54,18 @@ public class EnemyController : MonoBehaviour
         myAnimator.SetBool("isRunning", (navMeshAgent.velocity.magnitude > 0));
     }
 
+    public void StartCombat()
+    {
+        isCombat = true;
+        myAnimator.SetTrigger("StartCombat");
+    }
+
+    public void EndCombat()
+    {
+        isCombat = false;
+        myAnimator.SetTrigger("EndCombat");
+    }
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

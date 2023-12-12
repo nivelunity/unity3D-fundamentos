@@ -654,7 +654,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &790727723
 RectTransform:
   m_ObjectHideFlags: 0
@@ -933,7 +933,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &921286650
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2365,21 +2365,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3539459964737534481, guid: 3e02dcf9206835b4cbd8870fda942768,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3539459964737534481, guid: 3e02dcf9206835b4cbd8870fda942768,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3539459964737534481, guid: 3e02dcf9206835b4cbd8870fda942768,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3539459964737534481, guid: 3e02dcf9206835b4cbd8870fda942768,
-        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -2396,22 +2381,22 @@ PrefabInstance:
     - target: {fileID: 3539459964737534481, guid: 3e02dcf9206835b4cbd8870fda942768,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.92073256
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3539459964737534481, guid: 3e02dcf9206835b4cbd8870fda942768,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3539459964737534481, guid: 3e02dcf9206835b4cbd8870fda942768,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.39019436
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3539459964737534481, guid: 3e02dcf9206835b4cbd8870fda942768,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3539459964737534481, guid: 3e02dcf9206835b4cbd8870fda942768,
         type: 3}
@@ -2421,7 +2406,7 @@ PrefabInstance:
     - target: {fileID: 3539459964737534481, guid: 3e02dcf9206835b4cbd8870fda942768,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -314.06702
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3539459964737534481, guid: 3e02dcf9206835b4cbd8870fda942768,
         type: 3}
@@ -2430,38 +2415,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3885427013056187837, guid: 3e02dcf9206835b4cbd8870fda942768,
         type: 3}
-      propertyPath: countText
-      value: 
-      objectReference: {fileID: 790727724}
-    - target: {fileID: 3885427013056187837, guid: 3e02dcf9206835b4cbd8870fda942768,
-        type: 3}
-      propertyPath: winTextObject
-      value: 
-      objectReference: {fileID: 921286649}
-    - target: {fileID: 3885427013056187837, guid: 3e02dcf9206835b4cbd8870fda942768,
-        type: 3}
-      propertyPath: IgnoreMe.m_Bits
-      value: 128
+      propertyPath: speed
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7178260659969819358, guid: 3e02dcf9206835b4cbd8870fda942768,
         type: 3}
       propertyPath: m_Name
       value: Jugador
-      objectReference: {fileID: 0}
-    - target: {fileID: 7178260659969819358, guid: 3e02dcf9206835b4cbd8870fda942768,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7477632054698778664, guid: 3e02dcf9206835b4cbd8870fda942768,
-        type: 3}
-      propertyPath: m_Drag
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7477632054698778664, guid: 3e02dcf9206835b4cbd8870fda942768,
-        type: 3}
-      propertyPath: m_AngularDrag
-      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 7477632054698778664, guid: 3e02dcf9206835b4cbd8870fda942768,
         type: 3}
