@@ -8,19 +8,71 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private Transform jugador;
 
+    [SerializeField]
+    [Range(2f,15f)]
+    private float radioDeteccion = 10f;
+
+    [SerializeField]
+    [Range(45f, 180f)]
+    private float fieldOfView = 90f;
+
+    [SerializeField]
+    private Animator myAnimator;
+
     private NavMeshAgent navMeshAgent;
-    // Start is called before the first frame update
+    
+    private float detectionRadiusSquared;
+
+    private bool isCombat = false;
+    public bool IsCombat { get => isCombat; set => isCombat = value; }
+
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        detectionRadiusSquared = radioDeteccion * radioDeteccion;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (jugador != null)
+
+        if (isCombat) return;
+
+        if (jugador == null) return;
+
+        Vector3 toPlayer = jugador.position - transform.position;
+        float squareDistanceToJugador = toPlayer.sqrMagnitude;
+
+        if (squareDistanceToJugador > detectionRadiusSquared) return;
+        
+        float dotProduct = Vector3.Dot(transform.forward, toPlayer.normalized);
+        if (dotProduct >= Mathf.Cos(fieldOfView * .5f *Mathf.Deg2Rad))
         {
             navMeshAgent.SetDestination(jugador.position);
+            myAnimator.SetBool("isRunning", true);
         }
+        else
+        {
+            myAnimator.SetBool("isRunning", false);
+        }
+    }
+
+    public void StartCombat()
+    {
+        isCombat = true;
+        myAnimator.SetTrigger("StartCombat");
+    }
+
+    public void EndCombat()
+    {
+        isCombat = false;
+        Debug.Log("EL ENEMIGO SALIO DEL COMBATE");
+        myAnimator.SetTrigger("EndCombat");
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, radioDeteccion);
     }
 }

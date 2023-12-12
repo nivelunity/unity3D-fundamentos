@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 7477632054698778664}
   - component: {fileID: 3028416029885928024}
   - component: {fileID: 3885427013056187837}
+  - component: {fileID: 2976110512999303040}
   m_Layer: 0
   m_Name: Jugador
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55,10 +56,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.22
-  m_Height: 0.5
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.22, z: -0.1}
+  m_Radius: 0.3
+  m_Height: 0.8
+  m_Direction: 2
+  m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!54 &7477632054698778664
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -68,8 +69,8 @@ Rigidbody:
   m_GameObject: {fileID: 7178260659969819358}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Drag: 0.2
+  m_AngularDrag: 0.4
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -84,7 +85,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &3028416029885928024
 MonoBehaviour:
@@ -130,9 +131,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 12.9
-  countText: {fileID: 0}
-  winTextObject: {fileID: 0}
-  objetivosGemas: 12
+  IgnoreMe:
+    serializedVersion: 2
+    m_Bits: 128
+  myAnimator: {fileID: 4327457593078747567}
+--- !u!114 &2976110512999303040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7178260659969819358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10012ac96fd95c34282437b794690ef5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4844943448793975176
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -201,6 +215,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cb75dc2fdd63734988b8358f1314d25, type: 3}
+--- !u!95 &4327457593078747567 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9165535137218041895, guid: 8cb75dc2fdd63734988b8358f1314d25,
+    type: 3}
+  m_PrefabInstance: {fileID: 4844943448793975176}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5461944530470854243 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 644027910916855787, guid: 8cb75dc2fdd63734988b8358f1314d25,
