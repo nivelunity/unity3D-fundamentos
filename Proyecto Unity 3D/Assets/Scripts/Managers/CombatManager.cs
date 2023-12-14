@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,14 @@ using UnityEngine.Events;
 public class CombatManager : MonoBehaviour
 {
     public UnityEvent OnEndCombat;
+
+    [Serializable]
+    public class TwoIntEvent : UnityEvent<int, int> { }
+    public TwoIntEvent OnPlayerChoice;
+
+    [Serializable]
+    public class IntEvent : UnityEvent<int> { }
+    public IntEvent OnResetMatches;
 
     [SerializeField]
     [Range(1,5)]
@@ -36,17 +45,23 @@ public class CombatManager : MonoBehaviour
         matches = new MatchState[maxMatches];
     }
 
+    public void InitCombatConfig()
+    {
+        OnResetMatches.Invoke(maxMatches);
+    }
+
     public void PlayerChoice(int newChoice)
     {
         playerChoice = (Choice)newChoice;
-        enemyChoice  = (Choice)Random.Range(0, 3);
+        enemyChoice  = (Choice)UnityEngine.Random.Range(0, 3);
 
         matches[played] = Match();
-       
+
         Debug.Log(playerChoice);
         Debug.Log(enemyChoice);
         Debug.Log(matches[played]);
 
+        OnPlayerChoice.Invoke(played, (int)matches[played]);
         played++;
 
         if (played == maxMatches)

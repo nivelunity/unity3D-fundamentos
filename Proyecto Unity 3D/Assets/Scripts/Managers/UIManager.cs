@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,25 +9,28 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject statusCombatPanel;
     [SerializeField] private GameObject statusCombatIcon;
 
-    private void Start()
-    {
-        PopulatePanel(3);
-        SetMatchStatusIcon(0, 0);
-        SetMatchStatusIcon(1, 1);
-        SetMatchStatusIcon(2, 2);
-    }
-
     public void PopulatePanel(int maxMatches)
     {
         int childCount = statusCombatPanel.transform.childCount;
 
-        if (childCount == maxMatches) return;
-
-        for (int i = 0; i < maxMatches; i++)
+        if (childCount == maxMatches)
         {
-            Debug.Log(i);
-            Instantiate(statusCombatIcon, statusCombatPanel.transform);
+            for (int i = 0; i < maxMatches; i++)
+            {
+                GameObject statusIcon = statusCombatPanel.transform.GetChild(i).gameObject;
+                Image iconSprite = statusIcon.GetComponent<Image>();
+                iconSprite.color = Color.white;
+            }
         }
+        else
+        {
+            for (int i = 0; i < maxMatches; i++)
+            {
+                Debug.Log(i);
+                Instantiate(statusCombatIcon, statusCombatPanel.transform);
+            }
+        }   
+        
     }
 
     public void SetMatchStatusIcon(int index, int status)
