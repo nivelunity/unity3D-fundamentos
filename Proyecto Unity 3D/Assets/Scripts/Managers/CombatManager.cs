@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CombatManager : MonoBehaviour
 {
+    public UnityEvent OnEndCombat;
+
     [SerializeField]
     [Range(1,5)]
     private int maxMatches = 3;
@@ -35,8 +38,6 @@ public class CombatManager : MonoBehaviour
 
     public void PlayerChoice(int newChoice)
     {
-        if (played == maxMatches) return;
-
         playerChoice = (Choice)newChoice;
         enemyChoice  = (Choice)Random.Range(0, 3);
 
@@ -48,6 +49,11 @@ public class CombatManager : MonoBehaviour
 
         played++;
 
+        if (played == maxMatches)
+        {
+            OnEndCombat.Invoke();
+            played = 0;
+        }
     }
 
     private MatchState Match()

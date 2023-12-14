@@ -1064,7 +1064,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &710430405
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1702,9 +1702,9 @@ RectTransform:
   - {fileID: 753496683}
   m_Father: {fileID: 710430405}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 75, y: -50}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &978948975
@@ -1903,9 +1903,9 @@ RectTransform:
   - {fileID: 254301857}
   m_Father: {fileID: 710430405}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 125, y: -50}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &993179945
@@ -2114,6 +2114,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7571618000769202215}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1248344436 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2976110512999303040, guid: 3e02dcf9206835b4cbd8870fda942768,
+    type: 3}
+  m_PrefabInstance: {fileID: 7571618000769202215}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248344431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10012ac96fd95c34282437b794690ef5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1283938220
 GameObject:
   m_ObjectHideFlags: 0
@@ -2746,6 +2758,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f46e26cb7f7f10d4b8763c43110c9428, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnEndCombat:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 710430404}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1248344436}
+        m_TargetAssemblyTypeName: PlayerCollisions, Assembly-CSharp
+        m_MethodName: DelayEndCombat
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  maxMatches: 3
 --- !u!4 &1493673631
 Transform:
   m_ObjectHideFlags: 0
@@ -3190,9 +3230,9 @@ RectTransform:
   - {fileID: 1296004453}
   m_Father: {fileID: 710430405}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 25, y: -50}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1915134763
@@ -3896,6 +3936,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2976110512999303040, guid: 3e02dcf9206835b4cbd8870fda942768,
+        type: 3}
+      propertyPath: OnStartCombat.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976110512999303040, guid: 3e02dcf9206835b4cbd8870fda942768,
+        type: 3}
+      propertyPath: OnStartCombat.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976110512999303040, guid: 3e02dcf9206835b4cbd8870fda942768,
+        type: 3}
+      propertyPath: OnStartCombat.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 710430404}
+    - target: {fileID: 2976110512999303040, guid: 3e02dcf9206835b4cbd8870fda942768,
+        type: 3}
+      propertyPath: OnStartCombat.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976110512999303040, guid: 3e02dcf9206835b4cbd8870fda942768,
+        type: 3}
+      propertyPath: OnStartCombat.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976110512999303040, guid: 3e02dcf9206835b4cbd8870fda942768,
+        type: 3}
+      propertyPath: OnStartCombat.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976110512999303040, guid: 3e02dcf9206835b4cbd8870fda942768,
+        type: 3}
+      propertyPath: OnStartCombat.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976110512999303040, guid: 3e02dcf9206835b4cbd8870fda942768,
+        type: 3}
+      propertyPath: OnStartCombat.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3539459964737534481, guid: 3e02dcf9206835b4cbd8870fda942768,
         type: 3}
       propertyPath: m_LocalPosition.x
