@@ -41,19 +41,25 @@ public class PlayerCollisions : MonoBehaviour
         enemyTransform.rotation = Quaternion.LookRotation(-direction);
     }
 
-    public void DelayEndCombat()
+    public void EndCombatBehavior()
     {
         Debug.Log("¡FIN DEL DUELO!");
-
         myPlayerController.EndCombat();
-        myPlayerController.PlayerReset();
         myEnemyController.EndCombat();
-        myEnemyController.EnemyReset();
-
-        myEnemyController = null;
-
-        GameManager.Instance.Lives--;
-        GameManager.Instance.UpdateLifeText();
     }
 
+    public void LoseCombatBehavior()
+    {   
+        myPlayerController.PlayerReset();
+        myEnemyController.EnemyReset();
+        myEnemyController = null;
+    }
+
+    public void WinCombatBehavior()
+    {
+        
+        //myEnemyController.EnemyReset();
+        myEnemyController.gameObject.SetActive(false);
+        myEnemyController = null;
+    }
 }

@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject statusCombatPanel;
     [SerializeField] private GameObject statusCombatIcon;
+    [SerializeField] private GameObject livesPanel;
 
     public void PopulatePanel(int maxMatches)
     {
@@ -47,8 +48,13 @@ public class UIManager : MonoBehaviour
                 iconSprite.color = Color.green;
                 break;
             default:
-                iconSprite.color = Color.gray;
+                iconSprite.color = Color.yellow;
                 break;
         }
+    }
+
+    public void UpdateLives()
+    {
+        livesPanel.transform.GetChild((GameManager.Instance.Lives - 1)).gameObject.SetActive(false);
     }
 }
