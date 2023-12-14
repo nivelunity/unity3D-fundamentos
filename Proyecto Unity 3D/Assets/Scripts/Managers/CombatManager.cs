@@ -10,7 +10,7 @@ public class CombatManager : MonoBehaviour
     [SerializeField]
     [Range(1,5)]
     private int maxMatches = 3;
-
+        
     private enum Choice
     {
         Rock,
