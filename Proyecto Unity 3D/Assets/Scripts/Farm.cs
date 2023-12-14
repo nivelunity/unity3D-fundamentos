@@ -82,6 +82,8 @@ public class Farm : MonoBehaviour
                 isLooting = false;
                 CancelLooting();
                 Debug.Log("GRANJA LOOTEADA");
+                GameManager.Instance.Farms--;
+                GameManager.Instance.UpdateFarmText();
             }
         }
     }

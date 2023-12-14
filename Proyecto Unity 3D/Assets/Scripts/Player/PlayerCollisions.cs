@@ -56,6 +56,9 @@ public class PlayerCollisions : MonoBehaviour
         myPlayerController.PlayerReset();
         myEnemyController.EndCombat();
         myEnemyController.EnemyReset();
+
+        GameManager.Instance.Lives--;
+        GameManager.Instance.UpdateLifeText();
     }
 
 }
