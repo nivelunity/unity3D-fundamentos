@@ -22,11 +22,12 @@ public class PlayerController : MonoBehaviour
     private bool isMoving = false;
     private bool isCombat = false;
 
-
+    Vector3 initPosition;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        initPosition = transform.position;
     }
 
     private void Update()
@@ -94,5 +95,12 @@ public class PlayerController : MonoBehaviour
     {
         isCombat = false;
         myAnimator.SetTrigger("EndCombat");
+    }
+
+    public void PlayerReset()
+    {
+        transform.position = initPosition;
+        rb.Sleep();
+        targetPos = initPosition;
     }
 }

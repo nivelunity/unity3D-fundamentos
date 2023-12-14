@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerCollisions : MonoBehaviour
 {
-    
+    public UnityEvent OnStartCombat;
+
     private PlayerController myPlayerController;
+    private EnemyController myEnemyController;
 
     private void Awake()
     {
@@ -18,21 +21,13 @@ public class PlayerCollisions : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Combates"))
         {
-            Debug.Log("¡ES HORA DEL DUELO!");
-            myPlayerController.StartCombat();
-            Debug.Log(other.gameObject.name);
-            other.GetComponentInParent<EnemyController>().StartCombat();
-            FaceTransforms(transform, other.transform.parent);
-        }
-    }
+            if (myEnemyController != null) return;
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Combates"))
-        {
-            Debug.Log("¡FIN DEL DUELO!");
-            myPlayerController.EndCombat();
-            other.GetComponentInParent<EnemyController>().EndCombat();
+            OnStartCombat.Invoke();
+            myPlayerController.StartCombat();
+            myEnemyController = other.GetComponentInParent<EnemyController>();
+            myEnemyController.StartCombat();
+            FaceTransforms(transform, other.transform.parent);
         }
     }
 
@@ -40,10 +35,25 @@ public class PlayerCollisions : MonoBehaviour
     {
         // Calculate the direction from the first transform to the second transform
         Vector3 direction = enemyTransform.position - playerTransform.position;
-
         // Get the quaternion that looks in that direction
         Quaternion rotation = Quaternion.LookRotation(direction);
         playerTransform.rotation = rotation;
-        enemyTransform.rotation  = Quaternion.LookRotation(-direction);
+        enemyTransform.rotation = Quaternion.LookRotation(-direction);
     }
+
+    public void DelayEndCombat()
+    {
+        Debug.Log("¡FIN DEL DUELO!");
+
+        myPlayerController.EndCombat();
+        myPlayerController.PlayerReset();
+        myEnemyController.EndCombat();
+        myEnemyController.EnemyReset();
+
+        myEnemyController = null;
+
+        GameManager.Instance.Lives--;
+        GameManager.Instance.UpdateLifeText();
+    }
+
 }
