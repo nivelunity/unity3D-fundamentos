@@ -26,10 +26,13 @@ public class EnemyController : MonoBehaviour
     private bool isCombat = false;
     public bool IsCombat { get => isCombat; set => isCombat = value; }
 
+    Vector3 initPosition;
+
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         detectionRadiusSquared = radioDeteccion * radioDeteccion;
+        initPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -46,15 +49,13 @@ public class EnemyController : MonoBehaviour
         if (squareDistanceToJugador > detectionRadiusSquared) return;
         
         float dotProduct = Vector3.Dot(transform.forward, toPlayer.normalized);
+
         if (dotProduct >= Mathf.Cos(fieldOfView * .5f *Mathf.Deg2Rad))
         {
             navMeshAgent.SetDestination(jugador.position);
-            myAnimator.SetBool("isRunning", true);
         }
-        else
-        {
-            myAnimator.SetBool("isRunning", false);
-        }
+
+        myAnimator.SetBool("isRunning", (navMeshAgent.velocity.magnitude > 0));
     }
 
     public void StartCombat()
@@ -74,5 +75,14 @@ public class EnemyController : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, radioDeteccion);
+    }
+
+
+    public void EnemyReset()
+    {
+        navMeshAgent.ResetPath();
+        transform.position = initPosition;
+        myAnimator.SetBool("isRunning", false);
+        initPosition = transform.position;
     }
 }

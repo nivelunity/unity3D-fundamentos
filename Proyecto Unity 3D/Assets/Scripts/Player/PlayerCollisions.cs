@@ -8,6 +8,7 @@ public class PlayerCollisions : MonoBehaviour
 {
     
     private PlayerController myPlayerController;
+    private EnemyController myEnemyController;
 
     private void Awake()
     {
@@ -21,8 +22,10 @@ public class PlayerCollisions : MonoBehaviour
             Debug.Log("¡ES HORA DEL DUELO!");
             myPlayerController.StartCombat();
             Debug.Log(other.gameObject.name);
-            other.GetComponentInParent<EnemyController>().StartCombat();
+            myEnemyController = other.GetComponentInParent<EnemyController>();
+            myEnemyController.StartCombat();
             FaceTransforms(transform, other.transform.parent);
+            Invoke("DelayEndCombat", 2f);
         }
     }
 
@@ -30,9 +33,8 @@ public class PlayerCollisions : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Combates"))
         {
-            Debug.Log("¡FIN DEL DUELO!");
-            myPlayerController.EndCombat();
-            other.GetComponentInParent<EnemyController>().EndCombat();
+            if (myEnemyController == null) return;
+            
         }
     }
 
@@ -46,4 +48,14 @@ public class PlayerCollisions : MonoBehaviour
         playerTransform.rotation = rotation;
         enemyTransform.rotation  = Quaternion.LookRotation(-direction);
     }
+
+    void DelayEndCombat()
+    {
+        Debug.Log("¡FIN DEL DUELO!");
+        myPlayerController.EndCombat();
+        myPlayerController.PlayerReset();
+        myEnemyController.EndCombat();
+        myEnemyController.EnemyReset();
+    }
+
 }
