@@ -41,19 +41,32 @@ public class PlayerCollisions : MonoBehaviour
         enemyTransform.rotation = Quaternion.LookRotation(-direction);
     }
 
-    public void DelayEndCombat()
+    public void ChoiseBehavior(int playerChoice, int enemyChoice)
     {
-        Debug.Log("¡FIN DEL DUELO!");
-
-        myPlayerController.EndCombat();
-        myPlayerController.PlayerReset();
-        myEnemyController.EndCombat();
-        myEnemyController.EnemyReset();
-
-        myEnemyController = null;
-
-        GameManager.Instance.Lives--;
-        GameManager.Instance.UpdateLifeText();
+        myPlayerController.SetPlayerCombatIcon(GameManager.Instance.CombatIcons[playerChoice]);
+        myEnemyController.SetEnemyCombatIcon(GameManager.Instance.CombatIcons[enemyChoice]);
+        myEnemyController.ChoiceCombat();
+        myPlayerController.ChoiceCombat();
     }
 
+    public void EndCombatBehavior()
+    {
+        Debug.Log("¡FIN DEL DUELO!");
+        myPlayerController.EndCombat();
+        myEnemyController.EndCombat();
+    }
+
+    public void LoseCombatBehavior()
+    {   
+        myPlayerController.PlayerReset();
+        myEnemyController.EnemyReset();
+        myEnemyController = null;
+    }
+
+    public void WinCombatBehavior()
+    {
+        myEnemyController.EnemyDeath();
+        myPlayerController.ResetCombat();
+        myEnemyController = null;
+    }
 }

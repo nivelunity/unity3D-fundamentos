@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
@@ -18,6 +17,12 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField]
     private Animator myAnimator;
+
+    [SerializeField]
+    private Image combatIcon;
+
+    [SerializeField]
+    private Collider CombatTrigger;
 
     private NavMeshAgent navMeshAgent;
     
@@ -62,13 +67,23 @@ public class EnemyController : MonoBehaviour
     {
         isCombat = true;
         myAnimator.SetTrigger("StartCombat");
+        CombatTrigger.enabled = false;
     }
 
     public void EndCombat()
     {
-        isCombat = false;
-        Debug.Log("EL ENEMIGO SALIO DEL COMBATE");
         myAnimator.SetTrigger("EndCombat");
+        combatIcon.gameObject.SetActive(false);
+    }
+
+    public void ChoiceCombat()
+    {
+        myAnimator.SetTrigger("Attack");
+    }
+
+    public void EnemyDeath()
+    {
+        myAnimator.SetTrigger("Death");
     }
 
     void OnDrawGizmosSelected()
@@ -80,9 +95,22 @@ public class EnemyController : MonoBehaviour
 
     public void EnemyReset()
     {
+        isCombat = false;
         navMeshAgent.ResetPath();
         transform.position = initPosition;
+        myAnimator.SetTrigger("ResetCombat");
         myAnimator.SetBool("isRunning", false);
         initPosition = transform.position;
+        CombatTrigger.enabled = true;
+    }
+
+    public void SetEnemyCombatIcon(Sprite newIcon)
+    {
+        if (!combatIcon.gameObject.activeSelf)
+        {
+            combatIcon.gameObject.SetActive(true);
+        }
+
+        combatIcon.sprite = newIcon;
     }
 }

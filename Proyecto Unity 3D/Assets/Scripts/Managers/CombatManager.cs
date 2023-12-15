@@ -7,19 +7,26 @@ using UnityEngine.Events;
 public class CombatManager : MonoBehaviour
 {
     public UnityEvent OnEndCombat;
+    public UnityEvent OnWinCombat;
+    public UnityEvent OnLoseCombat;
 
     [Serializable]
     public class TwoIntEvent : UnityEvent<int, int> { }
     public TwoIntEvent OnPlayerChoice;
+    public TwoIntEvent OnMatchEnded;
 
     [Serializable]
     public class IntEvent : UnityEvent<int> { }
     public IntEvent OnResetMatches;
 
     [SerializeField]
-    [Range(1,5)]
+    [Range(1, 5)]
     private int maxMatches = 3;
-        
+
+    [SerializeField]
+    [Range(1, 5)]
+    private int delayNextCombat = 3;
+
     private enum Choice
     {
         Rock,
@@ -53,7 +60,7 @@ public class CombatManager : MonoBehaviour
     public void PlayerChoice(int newChoice)
     {
         playerChoice = (Choice)newChoice;
-        enemyChoice  = (Choice)UnityEngine.Random.Range(0, 3);
+        enemyChoice = (Choice)UnityEngine.Random.Range(0, 3);
 
         matches[played] = Match();
 
@@ -61,13 +68,14 @@ public class CombatManager : MonoBehaviour
         Debug.Log(enemyChoice);
         Debug.Log(matches[played]);
 
+
         OnPlayerChoice.Invoke(played, (int)matches[played]);
         played++;
-
+        OnMatchEnded.Invoke(newChoice, (int)enemyChoice);
         if (played == maxMatches)
         {
             OnEndCombat.Invoke();
-            played = 0;
+            Invoke("DelayNextCombat", delayNextCombat);
         }
     }
 
@@ -92,5 +100,40 @@ public class CombatManager : MonoBehaviour
     private bool IsWinCondition(Choice winPlayerChoice, Choice loseEnemyChoice)
     {
         return playerChoice == winPlayerChoice && enemyChoice == loseEnemyChoice;
+    }
+
+    public bool IsWinCombat()
+    {
+        int winCount = 0;
+        int loseCount = 0;
+
+        for (int i = 0; i < matches.Length; i++)
+        {
+            if (matches[i] == MatchState.Draw) continue;
+
+            if (matches[i] == MatchState.Win)
+            {
+                winCount++;
+            }
+            else
+            {
+                loseCount++;
+            }
+        }
+        return winCount > loseCount;
+    }
+
+    void DelayNextCombat()
+    {
+        if (IsWinCombat())
+        {
+            OnWinCombat.Invoke();
+        }
+        else
+        {
+            GameManager.Instance.Lives--;
+            OnLoseCombat.Invoke();
+        }
+        played = 0;
     }
 }

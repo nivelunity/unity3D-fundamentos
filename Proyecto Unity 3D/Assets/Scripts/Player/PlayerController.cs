@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using TMPro;
-using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,6 +12,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private Animator myAnimator;
+
+    [SerializeField]
+    private Image combatIcon;
 
     private Rigidbody rb;
     private Vector3 targetPos;
@@ -93,8 +92,19 @@ public class PlayerController : MonoBehaviour
 
     public void EndCombat()
     {
-        isCombat = false;
         myAnimator.SetTrigger("EndCombat");
+        combatIcon.gameObject.SetActive(false);
+    }
+
+    public void ChoiceCombat()
+    {
+        myAnimator.SetTrigger("Attack");
+    }
+
+    public void ResetCombat()
+    {
+        isCombat = false;
+        myAnimator.SetTrigger("ResetCombat");
     }
 
     public void PlayerReset()
@@ -102,5 +112,16 @@ public class PlayerController : MonoBehaviour
         transform.position = initPosition;
         rb.Sleep();
         targetPos = initPosition;
+        ResetCombat();
+    }
+
+    public void SetPlayerCombatIcon(Sprite newIcon)
+    {
+        if (!combatIcon.gameObject.activeSelf)
+        {
+            combatIcon.gameObject.SetActive(true);
+        }
+
+        combatIcon.sprite = newIcon;
     }
 }
