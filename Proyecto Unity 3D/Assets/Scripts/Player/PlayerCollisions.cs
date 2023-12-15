@@ -41,6 +41,12 @@ public class PlayerCollisions : MonoBehaviour
         enemyTransform.rotation = Quaternion.LookRotation(-direction);
     }
 
+    public void ChoiseBehavior(int playerChoice, int enemyChoice)
+    {
+        myPlayerController.SetPlayerCombatIcon(GameManager.Instance.CombatIcons[playerChoice]);
+        myEnemyController.SetEnemyCombatIcon(GameManager.Instance.CombatIcons[enemyChoice]);
+    }
+
     public void EndCombatBehavior()
     {
         Debug.Log("¡FIN DEL DUELO!");

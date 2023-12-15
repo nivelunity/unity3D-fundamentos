@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     // Singleton instance
     public static GameManager Instance { get; private set; }
+    
 
     public int Lives = 3;
     public int Farms = 3;
@@ -15,7 +16,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI lifeText;
     [SerializeField] private TextMeshProUGUI farmText;
 
-    // Initialize the singleton
+    [SerializeField] private Sprite[] combatIcons;
+    public Sprite[] CombatIcons { get => combatIcons;}
+
+
     void Awake()
     {
         if (Instance == null)

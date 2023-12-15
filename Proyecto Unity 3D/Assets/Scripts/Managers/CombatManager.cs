@@ -13,6 +13,7 @@ public class CombatManager : MonoBehaviour
     [Serializable]
     public class TwoIntEvent : UnityEvent<int, int> { }
     public TwoIntEvent OnPlayerChoice;
+    public TwoIntEvent OnMatchEnded;
 
     [Serializable]
     public class IntEvent : UnityEvent<int> { }
@@ -25,6 +26,9 @@ public class CombatManager : MonoBehaviour
     [SerializeField]
     [Range(1, 5)]
     private int delayNextCombat = 3;
+
+    [SerializeField]
+
 
     private enum Choice
     {
@@ -67,9 +71,10 @@ public class CombatManager : MonoBehaviour
         Debug.Log(enemyChoice);
         Debug.Log(matches[played]);
 
-        OnPlayerChoice.Invoke(played, (int)matches[played]);
-        played++;
 
+        OnPlayerChoice.Invoke(played, newChoice);
+        played++;
+        OnMatchEnded.Invoke(newChoice, (int)enemyChoice);
         if (played == maxMatches)
         {
             OnEndCombat.Invoke();

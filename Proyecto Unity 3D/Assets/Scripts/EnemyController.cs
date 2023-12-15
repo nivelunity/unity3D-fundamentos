@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
@@ -18,6 +17,9 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField]
     private Animator myAnimator;
+
+    [SerializeField]
+    private Image combatIcon;
 
     private NavMeshAgent navMeshAgent;
     
@@ -69,6 +71,7 @@ public class EnemyController : MonoBehaviour
         isCombat = false;
         Debug.Log("EL ENEMIGO SALIO DEL COMBATE");
         myAnimator.SetTrigger("EndCombat");
+        combatIcon.gameObject.SetActive(false);
     }
 
     void OnDrawGizmosSelected()
@@ -84,5 +87,15 @@ public class EnemyController : MonoBehaviour
         transform.position = initPosition;
         myAnimator.SetBool("isRunning", false);
         initPosition = transform.position;
+    }
+
+    public void SetEnemyCombatIcon(Sprite newIcon)
+    {
+        if (!combatIcon.gameObject.activeSelf)
+        {
+            combatIcon.gameObject.SetActive(true);
+        }
+
+        combatIcon.sprite = newIcon;
     }
 }
