@@ -21,3 +21,4 @@ External Assets
 - [Palm icon](https://game-icons.net/1x1/lorc/palm.html#download)
 - [Thumb up](https://game-icons.net/1x1/delapouite/thumb-up.html)
 - [Thumb down](https://game-icons.net/1x1/delapouite/thumb-down.html)
+- [Voice Pack │ Casual Game Announcer](https://assetstore.unity.com/packages/audio/sound-fx/voices/voice-pack-casual-game-announcer-206024)
