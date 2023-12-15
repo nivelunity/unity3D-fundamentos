@@ -65,7 +65,6 @@ public class PlayerCollisions : MonoBehaviour
 
     public void WinCombatBehavior()
     {
-
         myEnemyController.EnemyDeath();
         myPlayerController.ResetCombat();
         myEnemyController = null;

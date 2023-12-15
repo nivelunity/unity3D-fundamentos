@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public int Farms = 3;
 
     // Serialized TextMesh Pro components
-    [SerializeField] private TextMeshProUGUI lifeText;
+    [SerializeField] private TextMeshProUGUI statusText;
     [SerializeField] private TextMeshProUGUI farmText;
 
     [SerializeField] private Sprite[] combatIcons;
@@ -35,7 +35,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        UpdateLifeText();
         UpdateFarmText();
     }
 
@@ -44,21 +43,21 @@ public class GameManager : MonoBehaviour
     {
         if (Lives == 0)
         {
-            lifeText.text = "Game Over";
+            statusText.gameObject.SetActive(true);
+            statusText.text = "Game Over";
             return;
         }
-
-        lifeText.text = "Lives: " + Lives;
     }
 
     // Method to update farm text
     public void UpdateFarmText()
     {
-        if (Lives == 0)
+        if (Farms == 0)
         {
-            lifeText.text = "You Win";
-            return;
+            statusText.gameObject.SetActive(true);
+            statusText.text = "You Win";
         }
+
         farmText.text = "Loot " + Farms+ " Farms";
     }
 }

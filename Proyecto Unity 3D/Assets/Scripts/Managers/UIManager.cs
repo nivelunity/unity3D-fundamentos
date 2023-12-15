@@ -11,7 +11,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject livesPanel;
 
     [SerializeField]
-    Sprite winMatchIcon, LoseMatchIcon;
+    Sprite winMatchIcon, LoseMatchIcon, handIcon;
 
     public void PopulatePanel(int maxMatches)
     {
@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
             {
                 GameObject statusIcon = statusCombatPanel.transform.GetChild(i).gameObject;
                 Image iconSprite = statusIcon.GetComponent<Image>();
+                iconSprite.sprite = handIcon;
                 iconSprite.color = Color.white;
             }
         }
@@ -60,6 +61,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateLives()
     {
+        if (GameManager.Instance.Lives < 1) return;
         livesPanel.transform.GetChild((GameManager.Instance.Lives - 1)).gameObject.SetActive(false);
     }
 }
