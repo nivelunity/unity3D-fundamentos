@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
     // Singleton instance
     public static GameManager Instance { get; private set; }
-    
+
+    public UnityEvent OnLoseGame;
+    public UnityEvent OnWinGame;
 
     public int Lives = 3;
     public int Farms = 3;
@@ -39,12 +42,14 @@ public class GameManager : MonoBehaviour
     }
 
     // Method to update life text
-    public void UpdateLifeText()
+    public void Damage()
     {
+        Lives--;
         if (Lives == 0)
         {
             statusText.gameObject.SetActive(true);
             statusText.text = "Game Over";
+            OnLoseGame.Invoke();
             return;
         }
     }
@@ -56,6 +61,7 @@ public class GameManager : MonoBehaviour
         {
             statusText.gameObject.SetActive(true);
             statusText.text = "You Win";
+            OnWinGame.Invoke();
         }
 
         farmText.text = "Loot " + Farms+ " Farms";
