@@ -34,8 +34,8 @@ public class UIManager : MonoBehaviour
                 Debug.Log(i);
                 Instantiate(statusCombatIcon, statusCombatPanel.transform);
             }
-        }   
-        
+        }
+
     }
 
     public void SetMatchStatusIcon(int index, int status)
@@ -61,7 +61,11 @@ public class UIManager : MonoBehaviour
 
     public void UpdateLives()
     {
-        if (GameManager.Instance.Lives < 1) return;
-        livesPanel.transform.GetChild((GameManager.Instance.Lives - 1)).gameObject.SetActive(false);
+        int lives = GameManager.Instance.Lives;
+
+        if (lives >= 0)
+        {
+            livesPanel.transform.GetChild(lives).gameObject.SetActive(false);
+        }
     }
 }

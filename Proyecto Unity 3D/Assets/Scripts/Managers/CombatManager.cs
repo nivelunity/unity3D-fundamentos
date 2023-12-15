@@ -131,7 +131,7 @@ public class CombatManager : MonoBehaviour
         }
         else
         {
-            GameManager.Instance.Lives--;
+            GameManager.Instance.Damage();
             OnLoseCombat.Invoke();
         }
         played = 0;

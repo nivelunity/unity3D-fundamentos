@@ -18,7 +18,8 @@ public class SFXManager : MonoBehaviour
     private void PlaySFX(AudioClip newSFX)
     {
         if (myAudioSource.isPlaying) return;
-            myAudioSource.PlayOneShot(newSFX, 0.9f);
+        
+        myAudioSource.PlayOneShot(newSFX, 0.9f);
     }
 
     public void StartCombatSFX()

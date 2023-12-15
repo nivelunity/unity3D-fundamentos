@@ -1918,6 +1918,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10012ac96fd95c34282437b794690ef5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1248344437 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3885427013056187837, guid: 3e02dcf9206835b4cbd8870fda942768,
+    type: 3}
+  m_PrefabInstance: {fileID: 7571618000769202215}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248344431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a93f5db7b2655041955d8bb68557bb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1283938220
 GameObject:
   m_ObjectHideFlags: 0
@@ -1962,6 +1974,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff2da2fc0bc04f4b901e5ddb1b687d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnLoseGame:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 124883583}
+        m_TargetAssemblyTypeName: SFXManager, Assembly-CSharp
+        m_MethodName: GameOverSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1248344437}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnWinGame:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 124883583}
+        m_TargetAssemblyTypeName: SFXManager, Assembly-CSharp
+        m_MethodName: GameWinSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1248344437}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   Lives: 5
   Farms: 3
   statusText: {fileID: 921286651}
@@ -2438,18 +2504,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1248344436}
         m_TargetAssemblyTypeName: PlayerCollisions, Assembly-CSharp
         m_MethodName: EndCombatBehavior
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 124883583}
-        m_TargetAssemblyTypeName: SFXManager, Assembly-CSharp
-        m_MethodName: EndCombatSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
