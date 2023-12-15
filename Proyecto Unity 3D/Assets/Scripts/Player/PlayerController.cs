@@ -92,7 +92,6 @@ public class PlayerController : MonoBehaviour
 
     public void EndCombat()
     {
-        isCombat = false;
         myAnimator.SetTrigger("EndCombat");
         combatIcon.gameObject.SetActive(false);
     }
@@ -102,11 +101,18 @@ public class PlayerController : MonoBehaviour
         myAnimator.SetTrigger("Attack");
     }
 
+    public void ResetCombat()
+    {
+        isCombat = false;
+        myAnimator.SetTrigger("ResetCombat");
+    }
+
     public void PlayerReset()
     {
         transform.position = initPosition;
         rb.Sleep();
         targetPos = initPosition;
+        ResetCombat();
     }
 
     public void SetPlayerCombatIcon(Sprite newIcon)

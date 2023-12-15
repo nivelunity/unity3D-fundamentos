@@ -75,6 +75,7 @@ MonoBehaviour:
   fieldOfView: 90
   myAnimator: {fileID: 516234365181105464}
   combatIcon: {fileID: 2343438871469613176}
+  CombatTrigger: {fileID: 6607101552915089117}
 --- !u!1 &7625587403249001355
 GameObject:
   m_ObjectHideFlags: 0
