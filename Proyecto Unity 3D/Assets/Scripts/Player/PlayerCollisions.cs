@@ -45,6 +45,8 @@ public class PlayerCollisions : MonoBehaviour
     {
         myPlayerController.SetPlayerCombatIcon(GameManager.Instance.CombatIcons[playerChoice]);
         myEnemyController.SetEnemyCombatIcon(GameManager.Instance.CombatIcons[enemyChoice]);
+        myEnemyController.ChoiceCombat();
+        myPlayerController.ChoiceCombat();
     }
 
     public void EndCombatBehavior()

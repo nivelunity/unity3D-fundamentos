@@ -74,6 +74,11 @@ public class EnemyController : MonoBehaviour
         combatIcon.gameObject.SetActive(false);
     }
 
+    public void ChoiceCombat()
+    {
+        myAnimator.SetTrigger("Attack");
+    }
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

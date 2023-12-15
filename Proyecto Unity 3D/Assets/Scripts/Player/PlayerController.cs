@@ -97,6 +97,11 @@ public class PlayerController : MonoBehaviour
         combatIcon.gameObject.SetActive(false);
     }
 
+    public void ChoiceCombat()
+    {
+        myAnimator.SetTrigger("Attack");
+    }
+
     public void PlayerReset()
     {
         transform.position = initPosition;

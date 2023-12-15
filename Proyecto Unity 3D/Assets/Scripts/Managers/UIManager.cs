@@ -10,6 +10,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject statusCombatIcon;
     [SerializeField] private GameObject livesPanel;
 
+    [SerializeField]
+    Sprite winMatchIcon, LoseMatchIcon;
+
     public void PopulatePanel(int maxMatches)
     {
         int childCount = statusCombatPanel.transform.childCount;
@@ -42,9 +45,11 @@ public class UIManager : MonoBehaviour
         switch (status)
         {
             case 0:
+                iconSprite.sprite = LoseMatchIcon;
                 iconSprite.color = Color.red;
                 break;
             case 1:
+                iconSprite.sprite = winMatchIcon;
                 iconSprite.color = Color.green;
                 break;
             default:

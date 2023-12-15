@@ -27,9 +27,6 @@ public class CombatManager : MonoBehaviour
     [Range(1, 5)]
     private int delayNextCombat = 3;
 
-    [SerializeField]
-
-
     private enum Choice
     {
         Rock,
@@ -72,7 +69,7 @@ public class CombatManager : MonoBehaviour
         Debug.Log(matches[played]);
 
 
-        OnPlayerChoice.Invoke(played, newChoice);
+        OnPlayerChoice.Invoke(played, (int)matches[played]);
         played++;
         OnMatchEnded.Invoke(newChoice, (int)enemyChoice);
         if (played == maxMatches)
